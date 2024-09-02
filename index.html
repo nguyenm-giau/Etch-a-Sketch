@@ -7,8 +7,14 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <button class="user-grid-btn">Enter Grid Size</button>
-    <button class="random-color">Random Color</button>
+    <div class="button-container">
+      <button class="user-grid-btn">Enter Grid Size</button>
+      <label for="color-picker">Color:</label>
+      <input type="color" class="color-picker"></input>
+      <button class="random-color">Random Color</button>
+      <button class="eraser">Eraser</button>
+      <button class="reset">Reset</button>
+    </div>
     <div class="grid-container"></div>
     <script src="./scripts.js"></script>
   </body>

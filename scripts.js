@@ -1,10 +1,12 @@
 const gridContainer = document.querySelector(".grid-container")
 
 const DEFAULT_GRID_SIZE = 16;
-const DEFAULT_COLOR = "black"
+const DEFAULT_COLOR = "#000000" // black
+const DEFAULT_GRID_COLOR = "#FFFFFF" // white
 
 let userGridSize = DEFAULT_GRID_SIZE
 let userColor = DEFAULT_COLOR
+let isMouseDown = false
 
 const createGrid = () => {
     gridContainer.style.gridTemplateColumns = `repeat(${userGridSize}, 1fr)`;
@@ -17,7 +19,6 @@ const createGrid = () => {
         gridContainer.appendChild(div)
     }
 }
-
 
 
 const getUserGridSize = () => {
@@ -46,25 +47,71 @@ const getRandomColor = () => {
 const userButtons = () => {
     const userSizeBtn = document.querySelector(".user-grid-btn")
     const randomColorBtn = document.querySelector(".random-color")
+    const eraserBtn = document.querySelector(".eraser")
+    const resetBtn = document.querySelector(".reset")
+    const colorPicker = document.querySelector(".color-picker")
 
     userSizeBtn.addEventListener("click",getUserGridSize)
 
     randomColorBtn.addEventListener("click", () => {
         userColor = "Random"
+        highlightActiveButton(randomColorBtn)
     })
 
+    eraserBtn.addEventListener("click", () => {
+        userColor = "Eraser"
+        highlightActiveButton(eraserBtn)
+    })
+
+    resetBtn.addEventListener("click", () => {
+        const squareBoxes = document.querySelectorAll(".square-box")
+        squareBoxes.forEach(square => {
+            square.style.backgroundColor = DEFAULT_GRID_COLOR
+        })
+    })
+
+    colorPicker.value = DEFAULT_COLOR
+    colorPicker.addEventListener("input", (e) => userColor = e.target.value)
+}
+
+
+const highlightActiveButton = (selectedButton) => {
+    const buttons = document.querySelectorAll("button")
+
+    buttons.forEach(button => {
+        if (button === selectedButton) {
+            // Check if the button is already selected
+            if (button.classList.contains("select")) {
+                // If it is, remove the selection (deselect it)
+                button.style.backgroundColor = "";
+                button.style.color = "";
+                button.classList.remove("select");
+            } else {
+                // If it's not, select it
+                button.style.backgroundColor = "blue";
+                button.style.color = "white";
+                button.classList.add("select");
+            }
+        } else {
+            // Deselect all other buttons
+            button.style.backgroundColor = "";
+            button.style.color = "";
+            button.classList.remove("select");
+        }
+    });
 }
 
 
 const coloring = (element) => {
     if (userColor === "Random") {
         element.style.backgroundColor = getRandomColor()
+    } else if (userColor === "Eraser") {
+        element.style.backgroundColor = "white"
     } else {
         element.style.backgroundColor = userColor
     }
 }
 
-let isMouseDown = false
 
 gridContainer.addEventListener("mousedown", (e) => {
     isMouseDown = true;
