@@ -7,6 +7,7 @@ const DEFAULT_GRID_COLOR = "#FFFFFF" // white
 let userGridSize = DEFAULT_GRID_SIZE
 let userColor = DEFAULT_COLOR
 let isMouseDown = false
+let currentMode
 
 const createGrid = () => {
     gridContainer.style.gridTemplateColumns = `repeat(${userGridSize}, 1fr)`;
@@ -54,12 +55,12 @@ const userButtons = () => {
     userSizeBtn.addEventListener("click",getUserGridSize)
 
     randomColorBtn.addEventListener("click", () => {
-        userColor = "Random"
+        currentMode = "Random"
         highlightActiveButton(randomColorBtn)
     })
 
     eraserBtn.addEventListener("click", () => {
-        userColor = "Eraser"
+        currentMode = "Eraser"
         highlightActiveButton(eraserBtn)
     })
 
@@ -86,6 +87,7 @@ const highlightActiveButton = (selectedButton) => {
                 button.style.backgroundColor = "";
                 button.style.color = "";
                 button.classList.remove("select");
+                currentMode = ""
             } else {
                 // If it's not, select it
                 button.style.backgroundColor = "blue";
@@ -103,10 +105,10 @@ const highlightActiveButton = (selectedButton) => {
 
 
 const coloring = (element) => {
-    if (userColor === "Random") {
+    if (currentMode === "Random") {
         element.style.backgroundColor = getRandomColor()
-    } else if (userColor === "Eraser") {
-        element.style.backgroundColor = "white"
+    } else if (currentMode === "Eraser") {
+        element.style.backgroundColor = DEFAULT_GRID_COLOR
     } else {
         element.style.backgroundColor = userColor
     }

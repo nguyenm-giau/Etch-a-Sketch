@@ -19,7 +19,7 @@ img, picture, video, canvas, svg {
     display: grid;
     width: 800px;
     height:  800px;
-    /* border: 1px solid #1851ee; */
+    border: 1px solid black;
 }
 
 .square-box {
