@@ -7,7 +7,7 @@ const DEFAULT_GRID_COLOR = "#FFFFFF" // white
 
 let userGridSize = DEFAULT_GRID_SIZE
 let userColor = DEFAULT_COLOR
-let isMouseDown = false
+let isMouseDown
 let currentMode
 
 
@@ -29,7 +29,7 @@ const getUserGridSize = () => {
         if (isNaN(inputSize) || inputSize < 0) {
             alert("Please enter a number")
         } else if (inputSize > 64)  {
-            alert("Please enter a number les than 100")
+            alert("Please enter a number les than 64")
         } else {
             userGridSize = inputSize
             document.querySelector(".input-slider").value = userGridSize
@@ -51,7 +51,7 @@ const getRandomColor = () => {
 const setupButtonListeners = () => {
     const userSizeBtn = document.querySelector(".user-grid-btn")
     const randomColorBtn = document.querySelector(".random-color")
-    const eraserBtn = document.querySelector(".eraser")
+    const eraserBtn = document.querySelector(".erase")
     const resetBtn = document.querySelector(".reset")
     const colorPicker = document.querySelector(".color-picker")
     const gridSizeSlider = document.querySelector(".input-slider")
