@@ -186,8 +186,10 @@ input[type="color"]::-webkit-color-swatch-wrapper {
     display: grid;
     width: 800px;
     height:  800px;
-    border: 1px solid black;
     background-color: #FFFFFF;
     border: 3px solid #525252;
 }
 
+.hide-grid {
+  margin-bottom: 18px;   
+}

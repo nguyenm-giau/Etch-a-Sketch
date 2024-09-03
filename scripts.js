@@ -1,5 +1,6 @@
 const gridContainer = document.querySelector(".grid-container")
 const gridValueText = document.querySelector(".grid-size")
+const toggleGrid = document.querySelector(".toggle-grid")
 
 const DEFAULT_GRID_SIZE = 16;
 const DEFAULT_COLOR = "#000000" // black
@@ -48,6 +49,8 @@ const getRandomColor = () => {
 }
 
 
+
+
 const setupButtonListeners = () => {
     const userSizeBtn = document.querySelector(".user-grid-btn")
     const randomColorBtn = document.querySelector(".random-color")
@@ -55,6 +58,24 @@ const setupButtonListeners = () => {
     const resetBtn = document.querySelector(".reset")
     const colorPicker = document.querySelector(".color-picker")
     const gridSizeSlider = document.querySelector(".input-slider")
+    const hideGridBtn = document.querySelector(".hide-grid")
+
+    hideGridBtn.addEventListener("click", () => {
+        hideGridBtn.classList.toggle("hidden")
+        const squareBoxes = document.querySelectorAll(".square-box")
+        if (hideGridBtn.classList.contains("hidden")) {
+            squareBoxes.forEach(square => {
+                toggleGrid.textContent = "Show"
+                square.style.border = "none"
+            })
+        } else {
+            squareBoxes.forEach(square => {
+                toggleGrid.textContent = "Hide"
+                square.style.border = "1px solid rgb(175, 173, 173)"
+            })
+        }
+        
+    })
 
     userSizeBtn.addEventListener("click",getUserGridSize)
 
@@ -81,9 +102,16 @@ const setupButtonListeners = () => {
     gridSizeSlider.value = DEFAULT_GRID_SIZE
     gridValueText.textContent = DEFAULT_GRID_SIZE
     gridSizeSlider.addEventListener("input", (e) => {
+        if (hideGridBtn.classList.contains("hidden")) {
+            hideGridBtn.classList.remove("hidden")
+            toggleGrid.textContent = "Hide"
+            createGrid()
+        }
+
         gridValueText.textContent = e.target.value
         userGridSize = e.target.value
         createGrid()
+
     })
 }
 
