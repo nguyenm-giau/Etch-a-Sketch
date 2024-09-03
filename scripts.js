@@ -34,7 +34,7 @@ const getUserGridSize = () => {
         } else {
             userGridSize = inputSize
             document.querySelector(".input-slider").value = userGridSize
-            gridValueText.textContent = userGridSize
+            gridValueText.textContent = userGridSize + " x " + userGridSize
             createGrid()
         }
 }
@@ -58,18 +58,20 @@ const setupButtonListeners = () => {
     const resetBtn = document.querySelector(".reset")
     const colorPicker = document.querySelector(".color-picker")
     const gridSizeSlider = document.querySelector(".input-slider")
-    const hideGridBtn = document.querySelector(".hide-grid")
+    const hideGridBtn = document.querySelector(".hide-grid-btn")
 
     hideGridBtn.addEventListener("click", () => {
         hideGridBtn.classList.toggle("hidden")
         const squareBoxes = document.querySelectorAll(".square-box")
         if (hideGridBtn.classList.contains("hidden")) {
             squareBoxes.forEach(square => {
+                document.querySelector(".btn-grid-img").src = "./img/icons8-border-48.png"
                 toggleGrid.textContent = "Show"
                 square.style.border = "none"
             })
         } else {
             squareBoxes.forEach(square => {
+                document.querySelector(".btn-grid-img").src = "./img/icons8-border-32.png"
                 toggleGrid.textContent = "Hide"
                 square.style.border = "1px solid rgb(175, 173, 173)"
             })
@@ -100,7 +102,7 @@ const setupButtonListeners = () => {
     colorPicker.addEventListener("input", (e) => userColor = e.target.value)
 
     gridSizeSlider.value = DEFAULT_GRID_SIZE
-    gridValueText.textContent = DEFAULT_GRID_SIZE
+    gridValueText.textContent = `${DEFAULT_GRID_SIZE} x ${DEFAULT_GRID_SIZE}`
     gridSizeSlider.addEventListener("input", (e) => {
         if (hideGridBtn.classList.contains("hidden")) {
             hideGridBtn.classList.remove("hidden")
@@ -108,7 +110,7 @@ const setupButtonListeners = () => {
             createGrid()
         }
 
-        gridValueText.textContent = e.target.value
+        gridValueText.textContent = `${e.target.value} x ${e.target.value}`
         userGridSize = e.target.value
         createGrid()
 
