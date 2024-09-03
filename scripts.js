@@ -1,4 +1,5 @@
 const gridContainer = document.querySelector(".grid-container")
+const gridValueText = document.querySelector(".grid-size")
 
 const DEFAULT_GRID_SIZE = 16;
 const DEFAULT_COLOR = "#000000" // black
@@ -9,9 +10,9 @@ let userColor = DEFAULT_COLOR
 let isMouseDown = false
 let currentMode
 
+
 const createGrid = () => {
     gridContainer.style.gridTemplateColumns = `repeat(${userGridSize}, 1fr)`;
-
     gridContainer.innerHTML = ""
 
     for (let i = 0; i < userGridSize * userGridSize; i++) {
@@ -45,12 +46,13 @@ const getRandomColor = () => {
 }
 
 
-const userButtons = () => {
+const setupButtonListeners = () => {
     const userSizeBtn = document.querySelector(".user-grid-btn")
     const randomColorBtn = document.querySelector(".random-color")
     const eraserBtn = document.querySelector(".eraser")
     const resetBtn = document.querySelector(".reset")
     const colorPicker = document.querySelector(".color-picker")
+    const gridSizeSlider = document.querySelector(".input-slider")
 
     userSizeBtn.addEventListener("click",getUserGridSize)
 
@@ -73,6 +75,14 @@ const userButtons = () => {
 
     colorPicker.value = DEFAULT_COLOR
     colorPicker.addEventListener("input", (e) => userColor = e.target.value)
+
+    gridSizeSlider.value = DEFAULT_GRID_SIZE
+    gridValueText.textContent = DEFAULT_GRID_SIZE
+    gridSizeSlider.addEventListener("input", (e) => {
+        gridValueText.textContent = e.target.value
+        userGridSize = e.target.value
+        createGrid()
+    })
 }
 
 
@@ -123,6 +133,7 @@ gridContainer.addEventListener("mousedown", (e) => {
     e.preventDefault();
 })
 
+
 window.addEventListener("mouseup", () => isMouseDown = false)
 
 gridContainer.addEventListener("mouseover", (e) => {
@@ -131,7 +142,9 @@ gridContainer.addEventListener("mouseover", (e) => {
     }
 })
 
+
 gridContainer.addEventListener("mouseup",() => isMouseDown = false )
 
-userButtons()
+
+setupButtonListeners()
 createGrid()

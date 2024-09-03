@@ -7,15 +7,24 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="button-container">
-      <button class="user-grid-btn">Enter Grid Size</button>
-      <label for="color-picker">Color:</label>
-      <input type="color" class="color-picker"></input>
-      <button class="random-color">Random Color</button>
-      <button class="eraser">Eraser</button>
-      <button class="reset">Reset</button>
-    </div>
-    <div class="grid-container"></div>
+    <main>
+      <div class="container">
+        <div class="btn-container">
+          <button class="user-grid-btn">Enter Grid Size</button>
+          <label for="input-slider" class="slider-label">Change grid size</label>
+          <input type="range" min="16" max="64" class="input-slider">
+          <p class="grid-size"></p>
+          <label for="color-picker">Color:</label>
+          <input type="color" class="color-picker"></input>
+          <button class="random-color">Random Color</button>
+          <button class="eraser">Eraser</button>
+          <button class="reset">Reset</button>
+        </div>
+        <div class="grid-container"></div>
+      </div>
+    </main>
+
+
     <script src="./scripts.js"></script>
   </body>
 </html>
