@@ -4,26 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Etch a Sketch</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
   </head>
   <body>
     <main>
       <div class="container">
-        <div class="btn-container">
-          <button class="user-grid-btn">Enter Grid Size</button>
-          <label for="input-slider" class="slider-label">Change grid size</label>
-          <input type="range" min="16" max="64" class="input-slider">
-          <p class="grid-size"></p>
-          <label for="color-picker">Color:</label>
-          <input type="color" class="color-picker"></input>
-          <button class="random-color">Random Color</button>
-          <button class="eraser">Eraser</button>
-          <button class="reset">Reset</button>
+        <div class="left-side">
+          <h1>Etch A Sketch</h1>
+          <div class="btn-container">
+            <div class="top-section">
+              <label for="color-picker">Color picker</label>
+              <input type="color" class="color-picker"></input>
+            </div>
+            <div class="middle-section">
+              <button class="user-grid-btn">Enter Grid Size</button>
+              <button class="random-color"><span class="red">R</span><span class="yellow">a</span><span class="orange">n</span><span class="green">d</span><span class="blue">o</span><span class="red">m</span><span>&nbsp;</span><span class="violet">C</span><span class="red">o</span><span class="blue">l</span><span class="yellow">o</span><span class="orange">r</span></button>
+              <button class="eraser">Erase</button>
+              <button class="reset">Reset</button>
+            </div>
+            <div class="bottom-section">
+              <label for="input-slider" class="slider-label">Change grid size</label>
+              <input type="range" min="16" max="64" class="input-slider" />
+              <p class="grid-size"></p>
+            </div>
+          </div>
         </div>
-        <div class="grid-container"></div>
+
+
+
+
+      <div class="grid-container"></div>  
       </div>
     </main>
-
 
     <script src="./scripts.js"></script>
   </body>

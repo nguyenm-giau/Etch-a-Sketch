@@ -28,10 +28,12 @@ const getUserGridSize = () => {
 
         if (isNaN(inputSize) || inputSize < 0) {
             alert("Please enter a number")
-        } else if (inputSize > 100)  {
+        } else if (inputSize > 64)  {
             alert("Please enter a number les than 100")
         } else {
             userGridSize = inputSize
+            document.querySelector(".input-slider").value = userGridSize
+            gridValueText.textContent = userGridSize
             createGrid()
         }
 }
@@ -100,7 +102,7 @@ const highlightActiveButton = (selectedButton) => {
                 currentMode = ""
             } else {
                 // If it's not, select it
-                button.style.backgroundColor = "blue";
+                button.style.backgroundColor = "#01062E";
                 button.style.color = "white";
                 button.classList.add("select");
             }
