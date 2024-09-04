@@ -2,6 +2,7 @@ const gridContainer = document.querySelector(".grid-container")
 const gridValueText = document.querySelector(".grid-size")
 const toggleGrid = document.querySelector(".toggle-grid")
 
+
 const DEFAULT_GRID_SIZE = 16;
 const DEFAULT_COLOR = "#000000" // black
 const DEFAULT_GRID_COLOR = "#FFFFFF" // white
@@ -89,6 +90,7 @@ const setupButtonListeners = () => {
     eraserBtn.addEventListener("click", () => {
         currentMode = "Eraser"
         highlightActiveButton(eraserBtn)
+        applyCursorStyle(gridContainer, eraserBtn)
     })
 
     resetBtn.addEventListener("click", () => {
@@ -117,6 +119,14 @@ const setupButtonListeners = () => {
     })
 }
 
+const applyCursorStyle = (element, btn) => {
+    if (btn.classList.contains("erase") && btn.classList.contains("select")) {
+        const eraseImg = "./img/icons8-eraser-tool-24.png"
+        element.style.cursor = `url(${eraseImg}) ,auto`
+    } else {
+         element.style.cursor = `auto`
+    }
+}
 
 const highlightActiveButton = (selectedButton) => {
     const buttons = document.querySelectorAll("button")
@@ -155,7 +165,6 @@ const coloring = (element) => {
         element.style.backgroundColor = userColor
     }
 }
-
 
 gridContainer.addEventListener("mousedown", (e) => {
     isMouseDown = true;
