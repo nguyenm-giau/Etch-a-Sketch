@@ -54,6 +54,26 @@ input[type="color"]::-webkit-color-swatch {
     border: none;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+footer {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    width: 100vw;
+    padding: 10px;
+}
+
 .red { color: red; }
 .orange { color: orange; }
 .yellow { color: yellow; }
@@ -140,7 +160,8 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 .middle-section button:hover,
-.reset-btn:hover {
+.reset-btn:hover,
+.modal-content button {
     opacity: 0.9;
     cursor: pointer;
 }
@@ -236,16 +257,6 @@ input[type="color"]::-webkit-color-swatch {
     color: white;
 }
 
-footer {
-    display: flex;
-    position: fixed;
-    justify-content: center;
-    align-items: center;
-    bottom: 0;
-    width: 100vw;
-    padding: 10px;
-}
-
 .github {
     color: white;
     font-weight: bold;
@@ -253,4 +264,76 @@ footer {
 
 .footer-content {
     color: white;
+}
+
+
+.btn-container {
+    position: relative;
+}
+
+
+.grid-size-modal {
+    display: none;
+    border: 1px solid black;
+    z-index: 1; /* Sit on top */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #020c2e;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    height: 260px;
+}
+
+.modal-content button {
+    margin-bottom: 10px;
+    width: 130px;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    font-weight: bold;
+    display: inline-flex;
+    justify-content: center; 
+    background-color: rgb(8, 40, 143);
+    color: white;
+    align-items: center;
+}
+
+.grid-size-input {
+    margin-bottom: 22px;
+    position: relative;
+    width: 100%;
+    max-width: 180px;
+    height: 35px;
+    border-radius: 6px;
+}
+
+.modal-title {
+    color: white;
+    font-weight: bold;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }

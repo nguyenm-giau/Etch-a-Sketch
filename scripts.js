@@ -1,4 +1,5 @@
 const gridContainer = document.querySelector(".grid-container")
+const gridSizeSlider = document.querySelector(".input-slider")
 const gridValueText = document.querySelector(".grid-size")
 const toggleGrid = document.querySelector(".toggle-grid")
 
@@ -25,21 +26,50 @@ const createGrid = () => {
 }
 
 
-const getUserGridSize = () => {
-    let inputSize = parseInt(prompt("Enter grid size you want to create"))
 
-        if (isNaN(inputSize) || inputSize < 0) {
-            alert("Please enter a number")
-        } else if (inputSize > 64)  {
-            alert("Please enter a number les than 64")
+const showModalGrid = () => {
+    const gridSizeModal = document.querySelector(".grid-size-modal");
+    const gridSizeInput = document.querySelector(".grid-size-input");
+    const cancelBtn = document.querySelector(".cancel-btn");
+    const applyBtn = document.querySelector(".apply-btn");
+
+    gridSizeModal.style.display = "inline-block";
+    gridSizeInput.focus()
+
+    applyBtn.addEventListener("click", () => {
+        const modalContent = document.querySelector(".modal-content");
+
+        let errorText = document.querySelector(".error-message");
+        
+        if (gridSizeInput.value > 64 || gridSizeInput.value < 16) {
+            if (!errorText) {
+                errorText = document.createElement("p");
+                errorText.textContent = "Please enter a number between 16 and 64";
+                errorText.classList.add("error-message");
+                modalContent.insertBefore(errorText, gridSizeInput);
+            }
+            gridSizeInput.focus()
         } else {
-            userGridSize = inputSize
-            document.querySelector(".input-slider").value = userGridSize
-            gridValueText.textContent = userGridSize + " x " + userGridSize
-            createGrid()
+            if (errorText) {
+                errorText.remove();
+            }
+            userGridSize = gridSizeInput.value;
+            gridSizeModal.style.display = "none";
+            gridValueText.textContent = `${userGridSize} x ${userGridSize}`
+            gridSizeSlider.value = userGridSize
+            createGrid();
         }
-}
+    });
 
+    cancelBtn.addEventListener("click", () => {
+        const errorText = document.querySelector(".error-message")
+        gridSizeModal.style.display = "none"
+        gridSizeInput.value = ""
+        if (errorText) {
+            errorText.remove();
+        }
+    });
+}
 
 const getRandomColor = () => {
     const r = Math.floor(Math.random() * 256)
@@ -57,7 +87,6 @@ const setupButtonListeners = () => {
     const darkenBtn = document.querySelector(".darken-btn")
     const clearBtn = document.querySelector(".clear-btn")
     const colorPicker = document.querySelector(".color-picker")
-    const gridSizeSlider = document.querySelector(".input-slider")
     const hideGridBtn = document.querySelector(".hide-grid-btn")
     const resetAllBtn = document.querySelector(".reset-btn")
 
@@ -83,7 +112,7 @@ const setupButtonListeners = () => {
     colorPicker.value = DEFAULT_COLOR
     colorPicker.addEventListener("input", (e) => userColor = e.target.value)
 
-    userSizeBtn.addEventListener("click",getUserGridSize)
+    userSizeBtn.addEventListener("click",showModalGrid)
 
     randomColorBtn.addEventListener("click", () => {
         currentMode = "Random"
