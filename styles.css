@@ -138,7 +138,8 @@ input[type="color"]::-webkit-color-swatch {
 
 }
 
-.middle-section button:hover {
+.middle-section button:hover,
+.reset-btn:hover {
     opacity: 0.9;
     cursor: pointer;
 }
@@ -177,6 +178,18 @@ input[type="color"]::-webkit-color-swatch {
 
 .bottom-section input::-webkit-slider-thumb {
     cursor: pointer;
+}
+
+.reset-btn {
+    width: 110px;
+    padding: 6px;
+    border-radius: 6px;
+    border: none;
+    font-weight: bold;
+    display: inline-flex;
+    justify-content: center; 
+    background-color: rgb(230, 230, 230);
+    color: black;
 }
 
 
@@ -221,3 +234,4 @@ input[type="color"]::-webkit-color-swatch {
     background-color: rgb(8, 40, 143);
     color: white;
 }
+

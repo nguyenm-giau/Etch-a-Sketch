@@ -50,8 +50,6 @@ const getRandomColor = () => {
 }
 
 
-
-
 const setupButtonListeners = () => {
     const userSizeBtn = document.querySelector(".user-grid-btn")
     const randomColorBtn = document.querySelector(".random-color")
@@ -60,6 +58,7 @@ const setupButtonListeners = () => {
     const colorPicker = document.querySelector(".color-picker")
     const gridSizeSlider = document.querySelector(".input-slider")
     const hideGridBtn = document.querySelector(".hide-grid-btn")
+    const resetAllBtn = document.querySelector(".reset-btn")
 
     hideGridBtn.addEventListener("click", () => {
         hideGridBtn.classList.toggle("hidden")
@@ -79,6 +78,9 @@ const setupButtonListeners = () => {
         }
         
     })
+
+    colorPicker.value = DEFAULT_COLOR
+    colorPicker.addEventListener("input", (e) => userColor = e.target.value)
 
     userSizeBtn.addEventListener("click",getUserGridSize)
 
@@ -100,9 +102,6 @@ const setupButtonListeners = () => {
         })
     })
 
-    colorPicker.value = DEFAULT_COLOR
-    colorPicker.addEventListener("input", (e) => userColor = e.target.value)
-
     gridSizeSlider.value = DEFAULT_GRID_SIZE
     gridValueText.textContent = `${DEFAULT_GRID_SIZE} x ${DEFAULT_GRID_SIZE}`
     gridSizeSlider.addEventListener("input", (e) => {
@@ -117,6 +116,22 @@ const setupButtonListeners = () => {
         createGrid()
 
     })
+
+
+    resetAllBtn.addEventListener("click", () => {
+        resetButtonStyles()
+
+        hideGridBtn.classList.remove("hidden")
+        toggleGrid.textContent = "Hide"
+        
+        currentMode = ""
+        userGridSize = DEFAULT_GRID_SIZE
+        userColor = DEFAULT_COLOR
+        colorPicker.value = DEFAULT_COLOR
+        gridSizeSlider.value = DEFAULT_GRID_SIZE
+        gridValueText.textContent = `${DEFAULT_GRID_SIZE} x ${DEFAULT_GRID_SIZE}`
+        createGrid()
+    })
 }
 
 const applyCursorStyle = (element, btn) => {
@@ -127,6 +142,17 @@ const applyCursorStyle = (element, btn) => {
          element.style.cursor = `auto`
     }
 }
+
+
+const resetButtonStyles = () => {
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach(button => {
+        applyCursorStyle(gridContainer, button);
+        button.classList.remove("select");
+        button.style.backgroundColor = "";
+        button.style.color = "";
+    });
+};
 
 const highlightActiveButton = (selectedButton) => {
     const buttons = document.querySelectorAll("button")
