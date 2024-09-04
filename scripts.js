@@ -54,7 +54,8 @@ const setupButtonListeners = () => {
     const userSizeBtn = document.querySelector(".user-grid-btn")
     const randomColorBtn = document.querySelector(".random-color")
     const eraserBtn = document.querySelector(".erase")
-    const resetBtn = document.querySelector(".reset")
+    const darkenBtn = document.querySelector(".darken-btn")
+    const clearBtn = document.querySelector(".clear-btn")
     const colorPicker = document.querySelector(".color-picker")
     const gridSizeSlider = document.querySelector(".input-slider")
     const hideGridBtn = document.querySelector(".hide-grid-btn")
@@ -95,10 +96,11 @@ const setupButtonListeners = () => {
         applyCursorStyle(gridContainer, eraserBtn)
     })
 
-    resetBtn.addEventListener("click", () => {
+    clearBtn.addEventListener("click", () => {
         const squareBoxes = document.querySelectorAll(".square-box")
         squareBoxes.forEach(square => {
             square.style.backgroundColor = DEFAULT_GRID_COLOR
+            square.style.opacity = ""
         })
     })
 
@@ -123,7 +125,7 @@ const setupButtonListeners = () => {
 
         hideGridBtn.classList.remove("hidden")
         toggleGrid.textContent = "Hide"
-        
+
         currentMode = ""
         userGridSize = DEFAULT_GRID_SIZE
         userColor = DEFAULT_COLOR
@@ -131,6 +133,13 @@ const setupButtonListeners = () => {
         gridSizeSlider.value = DEFAULT_GRID_SIZE
         gridValueText.textContent = `${DEFAULT_GRID_SIZE} x ${DEFAULT_GRID_SIZE}`
         createGrid()
+    })
+
+
+    darkenBtn.addEventListener("click", () => {
+        currentMode = "Darken"
+        highlightActiveButton(darkenBtn)
+        applyCursorStyle(gridContainer, darkenBtn)
     })
 }
 
@@ -181,14 +190,27 @@ const highlightActiveButton = (selectedButton) => {
     });
 }
 
+const applyDarkeningEffect = (element) => {
+    if (element.style.opacity === '') {
+        element.style.opacity = 0.1;
+    } else {
+        element.style.opacity = Math.min(parseFloat(element.style.opacity) + 0.1, 1);
+    }
+};
+
 
 const coloring = (element) => {
     if (currentMode === "Random") {
         element.style.backgroundColor = getRandomColor()
     } else if (currentMode === "Eraser") {
+        element.style.opacity = ""
         element.style.backgroundColor = DEFAULT_GRID_COLOR
+    } else if (currentMode === "Darken") {
+        element.style.backgroundColor =  userColor
+        applyDarkeningEffect(element)
     } else {
         element.style.backgroundColor = userColor
+        element.style.opacity = 1
     }
 }
 
