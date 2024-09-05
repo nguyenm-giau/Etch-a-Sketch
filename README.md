@@ -7,21 +7,20 @@
 ## <a name="english"></a>English
 
 ## Screenshots
+
 ![Project Screenshot](https://imgur.com/dib4cUy.png)
 
-
 ## Table of Contents
+
 - [About the Project](#about-the-project)
 - [Features](#features)
 - [Built With](#built-with)
 - [How to Use](#how-to-use)
 - [Icons](#icons)
-- [License](#license)
 
 ## About the Project
 
 This Etch-a-Sketch web app is built using HTML, CSS, and JavaScript. It allows users to draw on a customizable grid using various modes, such as color picker, random color, and eraser.
-
 
 ## Features
 
@@ -48,12 +47,12 @@ You can view the live demo [here](https://gbalas855.github.io/Etch-a-Sketch/).
 To run the project locally, follow these steps:
 
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/Gbalas855/Etch-a-Sketch
-    ```
 
-2. Open the ```index.html``` file in your preferred web browser.
+   ```bash
+   git clone https://github.com/Gbalas855/Etch-a-Sketch
+   ```
 
+2. Open the `index.html` file in your preferred web browser.
 
 ## Icons
 
