@@ -15,6 +15,7 @@
 - [About the Project](#about-the-project)
 - [Features](#features)
 - [Built With](#built-with)
+- [Getting Started](#Getting-Started)
 - [Icons](#icons)
 
 ## About the Project
