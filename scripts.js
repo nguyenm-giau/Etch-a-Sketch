@@ -41,10 +41,10 @@ const showModalGrid = () => {
 
         let errorText = document.querySelector(".error-message");
         
-        if (gridSizeInput.value > 64 || gridSizeInput.value < 16) {
+        if (gridSizeInput.value > 64 || gridSizeInput.value < 2) {
             if (!errorText) {
                 errorText = document.createElement("p");
-                errorText.textContent = "Please enter a number between 16 and 64";
+                errorText.textContent = "Please enter a number between 2 and 64";
                 errorText.classList.add("error-message");
                 modalContent.insertBefore(errorText, gridSizeInput);
             }
