@@ -74,6 +74,11 @@ footer {
     padding: 10px;
 }
 
+
+footer img {
+    margin-left: 10px;
+}
+
 .red { color: red; }
 .orange { color: orange; }
 .yellow { color: yellow; }
@@ -336,4 +341,11 @@ footer {
     justify-content: center;
     align-items: center;
     width: 100%;
+}
+
+
+@media (max-height: 900px) {
+    footer {
+        display: none;
+    }
 }
