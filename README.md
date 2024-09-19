@@ -42,7 +42,7 @@ This Etch-a-Sketch web app is built using HTML, CSS, and JavaScript. It allows u
 
 ## Getting Started
 
-You can view the live demo [here](https://gbalas855.github.io/Etch-a-Sketch/).
+You can view the live demo [here](https://nguyenm-giau.github.io/Etch-a-Sketch/).
 
 To run the project locally, follow these steps:
 

@@ -52,7 +52,7 @@
 
 ### Hướng Dẫn Cài Đặt
 
-Để xem bản demo trực tiếp, [nhấp vào đây](https://gbalas855.github.io/Etch-a-Sketch/).
+Để xem bản demo trực tiếp, [nhấp vào đây](https://nguyenm-giau.github.io/Etch-a-Sketch/).
 
 Để chạy dự án trên máy tính của bạn, làm theo các bước sau:
 
